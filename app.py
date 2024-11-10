@@ -16,9 +16,6 @@ ssl._create_default_https_context = ssl._create_stdlib_context
 
 app = Flask(__name__)
 
-if __name__ == '__main__':
-      app.run(host='0.0.0.0', port=80)
-
 @app.route("/")
 def hello_world():
     return "<p>No habilitado</p>"
@@ -53,7 +50,7 @@ def about(medicamento):
     response_number = int(response_number)
 
     if response_number == 1:
-        temp_pdf = tempfile.NamedTemporaryFile(delete_on_close=False, suffix=".pdf")
+        temp_pdf = tempfile.NamedTemporaryFile(delete=False, suffix=".pdf")
         try:
             temp_pdf.write(pdf_m)
             temp_pdf_path = temp_pdf.name
