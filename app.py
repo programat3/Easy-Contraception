@@ -16,6 +16,9 @@ ssl._create_default_https_context = ssl._create_stdlib_context
 
 app = Flask(__name__)
 
+if __name__ == '__main__':
+      app.run(host='0.0.0.0', port=80)
+
 @app.route("/")
 def hello_world():
     return "<p>No habilitado</p>"
