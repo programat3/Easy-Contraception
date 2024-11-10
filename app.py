@@ -2,7 +2,6 @@ from flask import Flask, render_template, send_file
 import requests
 from weasyprint import HTML,Document
 import google.generativeai as genai
-import secret  # Asegura que el archivo tenga la clave API dentro de `secret.py`
 import pdfx
 import ssl
 import io
