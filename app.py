@@ -19,16 +19,10 @@ app = Flask(__name__)
 
 @app.route("/")
 def hello_world():
-    return "<p>Hello, World!</p>"
+    return "<p>No habilitado</p>"
 
 @app.route("/<medicamento>")
 def about(medicamento):
-    #1) obtener el medicamento
-    #2) búsqueda en web de ispch en alertas
-    #3) impresion de la página en pdf
-    #4) consulta a la IA si el medicamento encuentra alertas
-    #5) obtener los nro de lote de la alerta
-    #6) respuesta al usuario sobre alertas
     web = f"http://www.ispch.cl/categorias-alertas/anamed/?buscar={medicamento}"
     html = HTML(url=web)
     pdf_m = html.write_pdf()
@@ -62,10 +56,9 @@ def about(medicamento):
             temp_pdf.write(pdf_m)
             temp_pdf_path = temp_pdf.name
             temp_pdf.close()
-            # Procesar el archivo con pdfx
+
             pdf_x = pdfx.PDFx(temp_pdf_path)
             
-            # Ejemplo: Extraer enlaces del PDF
             enlaces = pdf_x.get_references_as_dict()
             
             
