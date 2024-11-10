@@ -31,7 +31,7 @@ def about(medicamento):
     razones = ""
     fecha = ""
     med = medicamento.upper()
-    genai.configure(api_key=secret.Secrets().secret_key)
+    genai.configure(api_key=os.environ.get('API_KEY'))
     generation_config = {
     "temperature": 0,
     "top_p": 0.95,
