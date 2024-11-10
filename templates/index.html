@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ContraceptEase</title>
+
+    <!-- Tipografía Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    
+    <!-- Font Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/css/root.css' )}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/css/style.css' )}}">
+
+<body>
+    <!-- Encabezado -->
+    <header class="encabezado" role="banner" aria-label="Encabezado del sitio ContraceptEase">
+        <h1 id="site-title">Contracept<span><b>Ease</b></span></h1>
+        <button aria-label="Abrir menú de navegación" class="menu-icon" id="menu-button" tabindex="0">
+            <i class="fa-solid fa-bars-staggered" aria-hidden="true"></i>
+        </button>
+    </header>
+
+    <!-- Sección de alerta principal -->
+    <section class="alerta-seccion" role="region" aria-labelledby="alerta-seccion-titulo" tabindex="0">
+        {% if not alerta %}
+        <!-- Estado Sin Alerta -->
+        <div class="sinalerta" role="alert" aria-live="polite" tabindex="0" id="sin-alerta-container">
+            <span class="icono-alerta" aria-hidden="true"><i class="fas fa-check-circle" aria-hidden="true"></i></span>
+            <span id="sin-alerta-text">Sin alerta sanitaria</span>
+        </div>
+        {% else %}
+        <!-- Estado Con Alerta Sanitaria -->
+        <div class="alerta" role="alert" aria-live="assertive" tabindex="0" id="con-alerta-container">
+            <span class="icono-alerta" aria-hidden="true"><i class="fas fa-exclamation-circle" aria-hidden="true"></i></span>
+            <span id="con-alerta-text">Con alerta sanitaria</span>
+        </div>
+        {% endif %}	
+        <!-- Información del Producto -->
+        <h2 id="producto-nombre">{{ medicamento }}</h2>
+    </section>
+    {% if not alerta %}
+    <!-- Alerta de "Sin Alerta Sanitaria" -->
+    <section class="detalle-alerta my-3" aria-labelledby="sin-alerta-titulo" tabindex="0" id="sin-alerta-detalle">
+        <h3 id="sin-alerta-titulo" class="visually-hidden">Sin Alerta Sanitaria</h3>
+        <div class="row align-items-center alerta-sin p-3" role="alert" aria-live="polite">
+            <div class="col-2 text-center">
+                <span class="icono" aria-hidden="true">
+                    <i class="fas fa-check-circle fa-2x"></i>
+                </span>
+            </div>
+            <div class="col-10" id="sin-alerta-detalle-text">
+                <p>No hay alerta sanitaria activa. El producto cumple con todos los estándares de seguridad y eficacia.</p>
+            </div>
+        </div>
+    </section>
+    {% else %}
+    <!-- Alerta de "Con Alerta Sanitaria" -->
+    <section class="detalle-alerta con-alerta my-3" aria-labelledby="con-alerta-titulo" tabindex="0" id="con-alerta-detalle">
+        <h3 id="con-alerta-titulo" class="visually-hidden">Con Alerta Sanitaria</h3>
+        <div class="row align-items-center alerta-detalle p-3" role="alert" aria-live="assertive">
+            <div class="col-2 text-center">
+                <span class="icono" aria-hidden="true">
+                    <i class="fas fa-exclamation-circle fa-2x"></i>
+                </span>
+            </div>
+            <div class="col-10" id="con-alerta-detalle-text">
+                <p><b id="con-alerta-fecha">{{ fecha }}</b></p>
+                <p>Lotes: </p>
+                {% for lote in lotes %}
+                <p> * <b id="con-alerta-lote">{{ lote }}</b></p>
+                {%endfor%}
+                <p> {{ razones }}</p>
+            </div>
+        </div>
+    </section>
+    {% endif %}
+    <!-- Pie de página -->
+    <footer class="pie-pagina" role="contentinfo" aria-label="Pie de página del sitio ContraceptEase">
+        <p class="logo" id="footer-logo">Contracept<span><b>Ease</b></span></p>
+        <p id="footer-rights">© Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
+
+</html>

@@ -1,0 +1,16 @@
+:root {
+    --color-sin-alerta: #00C72B;
+    --color-con-precaucion: #F47E00;
+    --color-con-alerta: #C70000;
+    --fondo-sin-alerta: #D3FFDC;
+    --fondo-con-precaucion: #FFE6CA;
+    --fondo-con-alerta: #FFC7C7;
+    --primario: #160633;
+    --secundario: #9747FF;
+    --terciario: #D6B6FF;
+    --degradado-1: linear-gradient(124deg, #160633 0%, #64358E 35.78%, #8955A9 55.4%, #A57FB8 76.1%, #B799C6 100%);
+    --degradado-2: linear-gradient(304deg, #160633 0%, #64358E 35.78%, #8955A9 55.4%, #A57FB8 76.1%, #B799C6 100%);
+    --font-size-large: 2rem;
+    --font-size-medium: 1.25rem;
+    --font-size-small: 1rem;
+}
