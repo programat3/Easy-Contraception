@@ -22,7 +22,7 @@ def hello_world():
 
 @app.route("/<medicamento>")
 def about(medicamento):
-    web = f"http://www.ispch.cl/categorias-alertas/anamed/?buscar={medicamento}"
+    web = f"https://www.ispch.cl/categorias-alertas/anamed/?buscar={medicamento}"
     html = HTML(url=web)
     pdf_m = html.write_pdf()
     pdf_io = io.BytesIO(pdf_m)
