@@ -45,6 +45,7 @@ def about(medicamento):
     )
     pdf_gemini = genai.upload_file(pdf_io, mime_type='application/pdf')
     prompt = f"Recibes un PDF que contiene una tabla, si no hay registros en la tabla, responde el número 0 y, separado por una coma otro 0. Si hay registros en la tabla, responde el número 1 separado por una coma de la fecha más nueva existente en la tabla en formato DD-MM-AAAA."
+    
     response = model.generate_content([prompt, pdf_gemini])
     numero_respuesta, fecha = response.text.split(',')
     numero_respuesta = int(numero_respuesta)
@@ -55,16 +56,13 @@ def about(medicamento):
             temp_pdf.write(pdf_m)
             temp_pdf_path = temp_pdf.name
             temp_pdf.close()
-
             pdf_x = pdfx.PDFx(temp_pdf_path)
-            
-            enlaces = pdf_x.get_references_as_dict()
-            
-            
+            enlaces = pdf_x.get_references_as_dict()         
         finally:
             del pdf_x
             gc.collect()
             os.remove(temp_pdf_path)
+            
         urls = enlaces
         dia,mes,agno = fecha.split('-')
         alerta_url = ""
